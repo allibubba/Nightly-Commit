@@ -34,3 +34,15 @@ Your crontab should be similar to the following:
       *   19  *    *   *     ~/Nightly-Commit/projectPush.sh > ~/Nightly-Commit/task.log 2>&1
 
 This runs at 7:00 every night, adjust accordingly.
+
+## Troubleshoot
+If you run into issues executing the script, make sure the script and log file belong to you:
+    $ chown username.username projectPush.sh task.log
+
+Also make sure they have appropriate permissions, 777 works fine
+    $ chmod 777 projectPush.sh task.log
+
+If you are having problems commiting, permission issues, check the output of:
+    $ echo $SSH_AUTH_SOCK
+
+Be sure that is set in your crontab.    
