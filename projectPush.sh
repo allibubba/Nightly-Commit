@@ -33,6 +33,6 @@ do
   fi
 done
 
-echo "Finished running projectPush at `date`" >> $SCRIPTPATH/task.log
+echo "Finished running projectPush at `date`" > $SCRIPTPATH/task.log
 
 
