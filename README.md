@@ -9,13 +9,13 @@ change to point to your project's directory
     $ bash projectPush.sh
 ## Cron
 you will need to update the HOME and SSH_AUTH_SOCK variables, to get these, in a console, capture the output of the following commands
+    $ echo $HOME
+    $ echo $SSH_AUTH_SOCK
 
 edit your cron file with the command
     crontab -e
 
 your crontab should be similar to the following
-    $ echo $HOME
-    $ echo $SSH_AUTH_SOCK
     HOME=/home/allibubba
     SSH_AUTH_SOCK=/tmp/keyring-RjESx0/ssh
 
@@ -23,4 +23,3 @@ your crontab should be similar to the following
       *   19  *    *   *     ~/Nightly-Commit/projectPush.sh > ~/Nightly-Commit/task.log 2>&1
 
 this runs at 7:00 every night, adjust accordingly
-
