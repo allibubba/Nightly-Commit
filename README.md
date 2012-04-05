@@ -31,4 +31,9 @@ your crontab should be similar to the following
     # m   h   dom  mon dow   command
       *   19  *    *   *     ~/Nightly-Commit/projectPush.sh > ~/Nightly-Commit/task.log 2>&1
 
+<<<<<<< HEAD
 this runs at 7:00 every night, adjust accordingly
+=======
+this runs at 7:00 every night, adjust accordingly
+
+>>>>>>> 6403efcbecc046995530c30cab6213829e0c3289
