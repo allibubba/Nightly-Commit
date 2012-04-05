@@ -8,12 +8,8 @@
 # TODO: Add ability to pass in project directory in via cron task
 ####################################
 
-
 SCRIPT=`readlink -f $0`
 SCRIPTPATH=`dirname $SCRIPT`
-
-#PROJECTS=( $( cat $SCRIPTPATH/directory_list.txt ) )
-#PROJ=( $( cat $PROJECTPATH/ ) )
 
 PROJECTPATH=$HOME/Projects
 PROJECTS=( $(find $PROJECTPATH -maxdepth 1 -type d -printf '%P\n') )
