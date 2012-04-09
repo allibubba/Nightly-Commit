@@ -11,11 +11,11 @@
 SCRIPT=`readlink -f $0`
 SCRIPTPATH=`dirname $SCRIPT`
 
-PROJECTPATH=$HOME/Projects
+PROJECTPATH=/home/allibubba/Projects
 PROJECTS=( $(find $PROJECTPATH -maxdepth 1 -type d -printf '%P\n') )
 
 runCommit () {
-  git add .
+  git add -A
   git commit -m"nightly commit: "$1
   git push
   notify-send $1
@@ -23,13 +23,13 @@ runCommit () {
 
 for proj in ${PROJECTS[@]}
 do
-  dir = $HOME/Projects/$proj
-  cd $HOME/Projects/$proj
-  if [ -d $HOME/Projects/$proj/.git ] && [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]]
+  DIR=/home/allibubba/Projects/$proj
+  cd /home/allibubba/Projects/$proj
+  if [ -d /home/allibubba/Projects/$proj/.git ] && [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]]
     then
       runCommit $proj
     else
-      echo "!! NOPE"
+      echo "!! NOPE "$DIR
   fi
 done
 
