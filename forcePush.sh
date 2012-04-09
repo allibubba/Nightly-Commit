@@ -18,9 +18,9 @@ PROJECTS=( $(find $PROJECTPATH -maxdepth 1 -type d -printf '%P\n') )
 
 runCommit () {
   git add -A
-  git commit -m$2
+  git commit -m"$answer"
   echo "2"
-  echo $answer
+  echo $2
   echo "2"  
   git push
   notify-send $1
