@@ -26,9 +26,9 @@ runCommit () {
 
 for proj in ${PROJECTS[@]}
 do
-  DIR=/home/allibubba/Tasks/$proj
-  cd /home/allibubba/Tasks/$proj
-  if [ -d /home/allibubba/Tasks/$proj/.git ] && [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]]
+  DIR=$PROJECTPATH/$proj
+  cd $PROJECTPATH/$proj
+  if [ -d $PROJECTPATH/$proj/.git ] && [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]]
     then
       echo "enter your commit message for project: "$proj
       read answer
