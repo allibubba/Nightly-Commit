@@ -1,27 +1,22 @@
 #!/bin/bash
 ####################################
 #
-# Nightly project commit
-# Recursively loop through directory and commit any project changes
-# To enable desktop notifications, not really needed, but they're fucking cool
-# $ sudo apt-get install libnotify-bin
-# TODO: Add ability to pass in project directory in via cron task
+# ForcePush.sh
+# run this script to loop through all your project directories, if a project has uncommitted changes you will be prompted for a commit message for each project, project will then commit and push with message.
+# TODO: remove all hard coded paths
 ####################################
 echo -e "ForcePush Initiated\n"
 
 SCRIPT=`readlink -f $0`
 SCRIPTPATH=`dirname $SCRIPT`
 
-#PROJECTPATH=/home/allibubba/Projects
 PROJECTPATH=/home/allibubba/Tasks
 PROJECTS=( $(find $PROJECTPATH -maxdepth 1 -type d -printf '%P\n') )
 
 runCommit () {
   git add -A
+  # not sure why, but could not use $2 here, kept endign string at first space
   git commit -m"$answer"
-  echo "***"
-  echo $1 $2
-  echo "***"  
   git push
   notify-send $1
 }
@@ -31,11 +26,8 @@ runCommit () {
 
 for proj in ${PROJECTS[@]}
 do
-  #DIR=/home/allibubba/Projects/$proj
   DIR=/home/allibubba/Tasks/$proj
-  #cd /home/allibubba/Projects/$proj
   cd /home/allibubba/Tasks/$proj
-  #if [ -d /home/allibubba/Projects/$proj/.git ] && [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]]
   if [ -d /home/allibubba/Tasks/$proj/.git ] && [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]]
     then
       echo "enter your commit message for project: "$proj
