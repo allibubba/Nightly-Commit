@@ -30,8 +30,9 @@ do
   cd $PROJECTPATH/$proj
   if [ -d $PROJECTPATH/$proj/.git ] && [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]]
     then
-      echo "enter your commit message for project: "$proj
-      read answer
+      # echo "enter your commit message for project: "$proj
+      # read answer
+      answer=$(zenity --entry --title="Commit Message" --text="Enter a commit message for $proj")
       runCommit $proj $answer
     else
       echo "!! NOPE "$DIR
