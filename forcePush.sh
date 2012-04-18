@@ -34,24 +34,13 @@ do
   git update-index -q --refresh  
   CHANGED=$(git diff-index --name-only HEAD --)  
   if [ ! -z "$CHANGED" ];  
-    #then VN="$VN-mod"   
     then
-      echo "changes found: $proj"
       answer=$(zenity --entry --title="Commit Message" --text="Enter a commit message for $proj")
       runCommit $proj $answer      
     else      
-      echo "NO changes found"
+      echo "NO changes found in $proj"
   fi
 
-#  if [ -d $PROJECTPATH/$proj/.git ] && [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]]
-#    then
-#      # echo "enter your commit message for project: "$proj
-#      # read answer
-#      answer=$(zenity --entry --title="Commit Message" --text="Enter a commit message for $proj")
-#      runCommit $proj $answer
-#    else
-#      echo "!! NOPE "$DIR
-#  fi
 done
 
 echo "Finished running projectPush at `date`" > $SCRIPTPATH/task.log
